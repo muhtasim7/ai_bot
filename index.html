@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhtasim AI v1.0 🚀</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #121212; color: #fff; margin: 0; display: flex; flex-direction: column; height: 100vh; }
-        header { background: #1f1f1f; padding: 15px; text-align: center; border-bottom: 1px solid #333; }
-        header h1 { margin: 0; font-size: 1.2rem; color: #ff4757; }
-        header p { margin: 5px 0 0; font-size: 0.8rem; color: #aaa; }
-        #chat-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b1416; color: #fff; margin: 0; display: flex; flex-direction: column; height: 100vh; }
+        header { background: #142326; padding: 15px; text-align: center; border-bottom: 1px solid #1f363a; }
+        header h1 { margin: 0; font-size: 1.2rem; color: #00f0ff; text-shadow: 0 0 10px rgba(0,240,255,0.3); }
+        header p { margin: 5px 0 0; font-size: 0.8rem; color: #87a7ad; }
+        #chat-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; background: radial-gradient(circle at top, #0f2024 0%, #0b1416 100%); }
         .message { max-width: 75%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; }
-        .user { background: #ff4757; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-        .bot { background: #2f3542; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
-        #input-container { padding: 15px; background: #1f1f1f; display: flex; gap: 10px; border-top: 1px solid #333; }
-        input { flex: 1; padding: 12px; border: none; border-radius: 25px; background: #2f3542; color: white; outline: none; font-size: 1rem; }
-        button { background: #ff4757; border: none; color: white; padding: 0 20px; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        .user { background: #00adb5; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 2px 8px rgba(0,173,181,0.2); }
+        .bot { background: #1c2d30; color: #e2f1f3; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #283f43; }
+        #input-container { padding: 15px; background: #142326; display: flex; gap: 10px; border-top: 1px solid #1f363a; }
+        input { flex: 1; padding: 12px 20px; border: 1px solid #283f43; border-radius: 25px; background: #1c2d30; color: white; outline: none; font-size: 1rem; transition: border 0.2s; }
+        input:focus { border-color: #00f0ff; }
+        button { background: #00adb5; border: none; color: white; padding: 0 24px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #00f0ff; }
     </style>
 </head>
 <body>
@@ -30,13 +32,14 @@
     </div>
 
     <div id="input-container">
-        <input type="text" id="user-input" placeholder="Type a message...">
+        <!-- Added onkeydown script so hitting "Enter" automatically sends the text -->
+        <input type="text" id="user-input" placeholder="Type a message..." onkeydown="if(event.key === 'Enter') sendMessage()">
         <button onclick="sendMessage()">Send</button>
     </div>
 
     <script>
-        // PASTE YOUR RENDER URL HERE (Make sure it ends with /chat)
-        const BACKEND_URL = "https://ai-backend-9ly5.onrender.com/chat";
+        // ⚠️ CRITICAL: Replace 'ai-boyfriend-backend' with your REAL app name found on your Render Dashboard
+        const BACKEND_URL = "https://ai-boyfriend-backend.onrender.com/chat";
 
         async function sendMessage() {
             const inputField = document.getElementById('user-input');
@@ -55,7 +58,7 @@
                 const data = await response.json();
                 appendMessage(data.reply, 'bot');
             } catch (error) {
-                appendMessage("oof backend link dropped, try again in a sec!", 'bot');
+                appendMessage("oof backend link dropped layout, try again in a sec! ❤️", 'bot');
             }
         }
 
